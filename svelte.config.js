@@ -1,4 +1,6 @@
 import adapter from '@sveltejs/adapter-auto';
+import preprocess from 'svelte-preprocess';
+const devMode = process.env.NODE_ENV === 'development';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -7,7 +9,14 @@ const config = {
 		// If your environment is not supported or you settled on a specific environment, switch out the adapter.
 		// See https://kit.svelte.dev/docs/adapters for more information about adapters.
 		adapter: adapter()
-	}
+	},
+	preprocess: preprocess({
+		// ...svelte-preprocess options
+		sourceMap: devMode,
+		stylus: {
+			prependData: `@import "./src/styles/variables.styl"`,
+		}
+	}),
 };
 
 export default config;
