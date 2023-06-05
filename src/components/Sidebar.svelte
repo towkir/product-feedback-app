@@ -1,11 +1,13 @@
 <script>
     import ProductBanner from "@/components/sidebar/ProductBanner.svelte";
     import Categories from "@/components/sidebar/Categories.svelte";
+    import Roadmap from "@/components/sidebar/Roadmap.svelte";
 </script>
 
 <div class="sidebar-wrapper">
     <ProductBanner/>
     <Categories />
+    <Roadmap />
 </div>
 
 <style lang="stylus">
