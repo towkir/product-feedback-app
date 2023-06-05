@@ -16,6 +16,7 @@
     border-radius 10px
     box-sizing border-box
     padding 24px
+    margin-bottom 24px
     color white
     height 137px
     display flex
