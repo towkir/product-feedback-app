@@ -14,7 +14,7 @@ const config = {
 		// ...svelte-preprocess options
 		sourceMap: devMode,
 		stylus: {
-			prependData: `@import "./src/styles/variables.styl"`,
+			prependData: `@import "./src/styles/variables.styl" @import "./src/styles/mixins.styl"`,
 		}
 	}),
 };
