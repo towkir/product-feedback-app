@@ -1,6 +1,14 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script>
+    import Sidebar from "@/components/Sidebar.svelte";
+</script>
 
-<style lang="styl" global>
-    @import "/src/styles/style.styl";
+<div class="container">
+    <Sidebar/>
+</div>
+
+<style lang="stylus" global>
+  @import "/src/styles/style.styl";
+  .container
+    width 1110px
+    margin 0 auto
 </style>
