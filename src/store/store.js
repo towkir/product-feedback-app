@@ -1,5 +1,5 @@
-import { writable } from 'svelte/store';
-export const categories = writable([
+import { readable } from 'svelte/store';
+export const categories = readable([
     'UI',
     'UX',
     'Enhancement',
