@@ -6,9 +6,14 @@
   border 0
   font-family inherit
   background-color transparent
+  transition color 0.3s ease-in-out, background-color 0.3s ease-in-out
+  cursor pointer
   &.primary
     background-color brand-purple
     color brand-white
+    &:hover
+      background-color lighten(brand-purple, 10)
+      color lighten(brand-white, 10)
 
 .tag
   body-3()
