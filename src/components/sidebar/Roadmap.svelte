@@ -1,5 +1,7 @@
 <script>
-    import {statuses} from "@/store/store.js";
+    import {statuses, feedbacks} from "@/store/store.js";
+    const filteredStatuses = $statuses.filter(item => item.name !== 'Suggestion');
+    const getFeedbackCount = (name) => $feedbacks.filter(item => item.status === name).length;
 </script>
 
 <div class="roadmap-wrapper">
@@ -8,13 +10,13 @@
         <a href="#" class="details">View</a>
     </div>
     <div class="status-list">
-        {#each $statuses as status}
+        {#each filteredStatuses as status}
             <div class="status">
                 <div class="status-label">
                     <span class="circle" style="background-color: {status.color}"></span>
                     {status.name}
                 </div>
-                <div class="count">3</div>
+                <div class="count">{getFeedbackCount(status.name)}</div>
             </div>
         {/each}
     </div>
