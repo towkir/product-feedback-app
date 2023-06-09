@@ -69,6 +69,7 @@ export const feedbacks = writable([
         title: 'Add image/video upload to feedback',
         category: 'Enhancement',
         upvotes: 51,
+        voted: true,
         status: 'Suggestion',
         description: 'Images and screencasts can enhance comments on solutions.',
         comments: [],
