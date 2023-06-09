@@ -2,13 +2,21 @@
     import Sidebar from "@/components/Sidebar.svelte";
     import Header from "@/components/Header.svelte";
     import NoFeedbackFound from "@/components/feedback/NoFeedbackFound.svelte";
+    import FeedbackCard from "@/components/feedback/FeedbackCard.svelte";
+    import {feedbacks} from "@/store/store.js";
 </script>
 
 <div class="container">
     <Sidebar/>
     <main>
         <Header />
-        <NoFeedbackFound />
+        {#if $feedbacks.length > 0}
+            {#each $feedbacks as feedback}
+                <FeedbackCard {feedback} />
+            {/each}
+        {:else}
+            <NoFeedbackFound />
+        {/if}
     </main>
 </div>
 
