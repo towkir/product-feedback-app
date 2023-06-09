@@ -1,13 +1,21 @@
 <script>
     import IconLightBulb from "@/components/vectors/IconLightBulb.svelte";
+    import Select from "@/components/elements/Select.svelte";
+    let order = 'Most Upvotes';
+    let sortOptions = [
+        'Most Upvotes',
+        'Least Upvotes',
+        'Most Comments',
+        'Least Comments',
+    ];
 </script>
 
 <header>
     <div class="feedback-info">
-        <IconLightBulb/>
+        <IconLightBulb />
         <h3>0 Suggestions</h3>
         <div class="sort-by">
-            Sort By:
+            <Select value="{order}" options="{sortOptions}"/>
         </div>
     </div>
     <button class="btn primary">+ Add Feedback</button>
@@ -27,7 +35,7 @@
         padding-left 10px
         display flex
         align-items center
-        :global(svg)
+        :global(#icon-light-bulb)
           margin-right 16px
         h3
           heading-3()
