@@ -6,7 +6,7 @@
 
 <div class="sidebar-wrapper">
     <ProductBanner/>
-    <Categories />
+    <Categories on:categorySelection/>
     <Roadmap />
 </div>
 

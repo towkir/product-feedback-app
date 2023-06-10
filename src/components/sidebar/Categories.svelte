@@ -1,11 +1,23 @@
 <script>
+    import {createEventDispatcher} from "svelte";
     import {categories} from "@/store/store.js";
+    const allCategories = ['All', ...$categories];
+    let selectedCategory = 'All';
+    const dispatch = createEventDispatcher();
+    function chooseCategory(val) {
+        selectedCategory = val;
+        dispatch('categorySelection', val)
+    }
 </script>
 
 <div class="tag-list">
-    <span class="tag active">All</span>
-    {#each $categories as category}
-        <span class="tag">{category}</span>
+    {#each allCategories as category}
+        <span
+            class="tag {selectedCategory === category ? 'active' : null }"
+            on:click={() => chooseCategory(category)}
+        >
+            {category}
+        </span>
     {/each}
 </div>
 
