@@ -1,13 +1,13 @@
 <script>
+    import {createEventDispatcher} from "svelte";
     import IconLightBulb from "@/components/vectors/IconLightBulb.svelte";
     import Select from "@/components/elements/Select.svelte";
-    let order = 'Most Upvotes';
-    let sortOptions = [
-        'Most Upvotes',
-        'Least Upvotes',
-        'Most Comments',
-        'Least Comments',
-    ];
+    const dispatch = createEventDispatcher();
+    export let sortValue = '';
+    export let sortOptions = '';
+    function sortFeedbacks(event) {
+        dispatch('sortFeedbacks', event.detail);
+    }
 </script>
 
 <header>
@@ -15,7 +15,7 @@
         <IconLightBulb />
         <h3>0 Suggestions</h3>
         <div class="sort-by">
-            <Select value="{order}" options="{sortOptions}"/>
+            <Select value="{sortValue}" options="{sortOptions}" on:select={sortFeedbacks}/>
         </div>
     </div>
     <button class="btn primary">+ Add Feedback</button>

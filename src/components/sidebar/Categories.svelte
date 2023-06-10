@@ -2,10 +2,9 @@
     import {createEventDispatcher} from "svelte";
     import {categories} from "@/store/store.js";
     const allCategories = ['All', ...$categories];
-    let selectedCategory = 'All';
+    export let selectedCategory = 'All';
     const dispatch = createEventDispatcher();
     function chooseCategory(val) {
-        selectedCategory = val;
         dispatch('categorySelection', val)
     }
 </script>

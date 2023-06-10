@@ -2,11 +2,12 @@
     import ProductBanner from "@/components/sidebar/ProductBanner.svelte";
     import Categories from "@/components/sidebar/Categories.svelte";
     import Roadmap from "@/components/sidebar/Roadmap.svelte";
+    export let selectedCategory;
 </script>
 
 <div class="sidebar-wrapper">
     <ProductBanner/>
-    <Categories on:categorySelection/>
+    <Categories selectedCategory="{selectedCategory}" on:categorySelection />
     <Roadmap />
 </div>
 

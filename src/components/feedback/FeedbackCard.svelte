@@ -1,14 +1,8 @@
 <script>
-    import {onMount} from "svelte";
-    import {comments} from "@/store/store.js";
     import IconArrowUp from "@/components/vectors/IconArrowUp.svelte";
     import IconChatBubble from "@/components/vectors/IconChatBubble.svelte";
 
     export let feedback = {};
-    $: commentCount = feedback.comments ? feedback.comments.length : 0
-    onMount(() => {
-        feedback.comments = $comments.filter((item) => item.feedbackId === feedback.id);
-    })
 </script>
 
 <div class="feedback-card">
@@ -24,7 +18,7 @@
         </div>
         <div class="comments">
             <IconChatBubble />
-            <span class="comment-count">{commentCount}</span>
+            <span class="comment-count">{feedback.comments}</span>
         </div>
     </div>
 </div>

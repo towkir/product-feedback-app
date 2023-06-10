@@ -11,7 +11,6 @@
     const dispatch = createEventDispatcher();
     const toggleDropdown = () => open = !open;
     const selectAndEmit = (val) => {
-        value = val;
         dispatch('select', val);
     };
     const handleClickOutside = () => {
