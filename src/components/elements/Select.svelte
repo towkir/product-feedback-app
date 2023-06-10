@@ -29,7 +29,7 @@
     {#if open}
         <div class="options">
             {#each options as option}
-                <div class="option" on:click={selectAndEmit(option)}>{option}</div>
+                <div class="option" on:click={() => selectAndEmit(option)}>{option}</div>
             {/each}
         </div>
     {/if}
