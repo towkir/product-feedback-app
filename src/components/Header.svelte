@@ -1,10 +1,12 @@
 <script>
     import {createEventDispatcher} from "svelte";
+    const dispatch = createEventDispatcher();
     import IconLightBulb from "@/components/vectors/IconLightBulb.svelte";
     import Select from "@/components/elements/Select.svelte";
-    const dispatch = createEventDispatcher();
+    import {singularOrPlural} from "@/scripts/helper.js";
     export let sortValue = '';
     export let sortOptions = '';
+    export let feedbackCount = 0;
     function sortFeedbacks(event) {
         dispatch('sortFeedbacks', event.detail);
     }
@@ -13,7 +15,7 @@
 <header>
     <div class="feedback-info">
         <IconLightBulb />
-        <h3>0 Suggestions</h3>
+        <h3>{singularOrPlural(feedbackCount, 'Suggestion', 'Suggestions')}</h3>
         <div class="sort-by">
             <Select value="{sortValue}" options="{sortOptions}" on:select={sortFeedbacks}/>
         </div>

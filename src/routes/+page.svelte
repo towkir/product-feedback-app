@@ -55,7 +55,12 @@
 <div class="container">
     <Sidebar selectedCategory="{filterBy}" on:categorySelection={filterFeedbacks}/>
     <main>
-        <Header sortValue="{sortLabel}" sortOptions="{sortLabels}" on:sortFeedbacks={sortFeedbacks}/>
+        <Header
+            feedbackCount="{feedbacksFIlteredAndSorted.length}"
+            sortValue="{sortLabel}"
+            sortOptions="{sortLabels}"
+            on:sortFeedbacks={sortFeedbacks}
+        />
         {#if feedbacksFIlteredAndSorted.length > 0}
             {#each feedbacksFIlteredAndSorted as feedback}
                 <FeedbackCard {feedback} />
