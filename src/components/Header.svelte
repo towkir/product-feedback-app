@@ -41,4 +41,5 @@
           margin-right 16px
         h3
           heading-3()
+          min-width 150px
 </style>
