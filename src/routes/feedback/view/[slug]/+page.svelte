@@ -4,7 +4,7 @@
 </script>
 
 <div class="container">
-    <FeedbackCard feedback="{data}"/>
+    <FeedbackCard feedback="{data}" clickable="{false}"/>
 </div>
 
 <style lang="stylus">

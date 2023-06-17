@@ -1,11 +1,18 @@
 <script>
+    import {goto} from "$app/navigation";
     import IconArrowUp from "@/components/vectors/IconArrowUp.svelte";
     import IconChatBubble from "@/components/vectors/IconChatBubble.svelte";
 
     export let feedback = {};
+    export let clickable = true;
+    const navigateToDetailsPage = function(id) {
+        if (clickable) {
+            goto(`/feedback/view/${id}`)
+        }
+    }
 </script>
 
-<div class="feedback-card">
+<div class="feedback-card" on:click={() => navigateToDetailsPage(feedback.id)}>
     <div class="votes {feedback.voted ? 'active' : null}">
         <IconArrowUp />
         <span class="vote-count">{feedback.upvotes}</span>
