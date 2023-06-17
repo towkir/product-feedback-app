@@ -18,7 +18,7 @@
         </div>
         <div class="comments">
             <IconChatBubble />
-            <span class="comment-count">{feedback.comments}</span>
+            <span class="comment-count">{feedback.comments.length}</span>
         </div>
     </div>
 </div>

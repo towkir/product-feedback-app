@@ -19,6 +19,10 @@
         'Least Comments',
     ];
 
+    function getNumericFromArrayOrNum(type) {
+        return typeof type === 'number' ? type : type.length;
+    }
+
     function sortFeedbacks(event) {
         console.log(event);
         sortLabel = event.detail;
@@ -43,10 +47,11 @@
     $: feedbacksFiltered = filterBy !== 'All' ? feedbacksWithCommentCount
         .filter((item) => item.category === filterBy) : feedbacksWithCommentCount;
     $: feedbacksFIlteredAndSorted = feedbacksFiltered
-        .sort((a, b) => sortIn === 'ascending' ? a[sortBy] - b[sortBy] : b[sortBy] - a[sortBy])
+        .sort((a, b) => sortIn === 'ascending' ? getNumericFromArrayOrNum(a[sortBy]) - getNumericFromArrayOrNum(b[sortBy])
+            : getNumericFromArrayOrNum(b[sortBy]) - getNumericFromArrayOrNum(a[sortBy]));
     onMount(() => {
         for (let i = 0; i < $feedbacks.length; i += 1) {
-            $feedbacks[i].comments = $comments.filter((item) => item.feedbackId === $feedbacks[i].id).length;
+            $feedbacks[i].comments = $comments.filter((item) => item.feedbackId === $feedbacks[i].id);
         }
         feedbacksWithCommentCount = $feedbacks;
     })
