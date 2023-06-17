@@ -76,8 +76,7 @@
     </main>
 </div>
 
-<style lang="stylus" global>
-  @import "/src/styles/style.styl";
+<style lang="stylus">
   .container
     width 1110px
     margin 0 auto
