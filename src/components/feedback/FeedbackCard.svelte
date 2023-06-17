@@ -5,7 +5,7 @@
 
     export let feedback = {};
     export let clickable = true;
-    const navigateToDetailsPage = function(id) {
+    function navigateToDetailsPage(id) {
         if (clickable) {
             goto(`/feedback/view/${id}`)
         }
