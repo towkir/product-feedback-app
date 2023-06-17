@@ -21,7 +21,7 @@
         <div class="details">
             <h3>{feedback.title}</h3>
             <p>{feedback.description}</p>
-            <span class="tag">{feedback.category}</span>
+            <span class="tag" on:click|stopPropagation={() => {}}>{feedback.category}</span>
         </div>
         <div class="comments">
             <IconChatBubble />
