@@ -1,6 +1,6 @@
 <script>
     import {goto} from "$app/navigation";
-    import IconArrowUp from "@/components/vectors/IconArrowUp.svelte";
+    import IconArrowUp from "@/components/vectors/IconArrowVr.svelte";
     import IconChatBubble from "@/components/vectors/IconChatBubble.svelte";
 
     export let feedback = {};

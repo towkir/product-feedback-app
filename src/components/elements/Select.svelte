@@ -1,7 +1,7 @@
 <script>
     import {createEventDispatcher} from "svelte";
     import {clickOutside} from "@/scripts/clickOutside.js";
-    import IconArrowUp from "@/components/vectors/IconArrowUp.svelte";
+    import IconArrowVr from "@/components/vectors/IconArrowVr.svelte";
     export let label = 'Sort By:'
     export let placeholder = 'Select Option'
     export let value = '';
@@ -24,7 +24,7 @@
     use:clickOutside
     on:outClick={handleClickOutside}
 >
-    <div class="label">{label} <span>{value || placeholder} <IconArrowUp /></span></div>
+    <div class="label">{label} <span>{value || placeholder} <IconArrowVr /></span></div>
     {#if open}
         <div class="options">
             {#each options as option}
@@ -44,13 +44,13 @@
       font-weight 400
       span
         heading-4()
-      :global(#icon-arrow-up)
+      :global(#icon-arrow-hr)
         margin-left 10px
         transition transform 0.3s ease-in-out
         transform rotate(180deg)
     &.open
       .label
-        :global(#icon-arrow-up)
+        :global(#icon-arrow-hr)
           transform rotate(0deg)
     .options
       position absolute
