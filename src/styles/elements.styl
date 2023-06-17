@@ -9,11 +9,21 @@
   transition color 0.3s ease-in-out, background-color 0.3s ease-in-out
   cursor pointer
   &.primary
-    background-color brand-purple
     color brand-white
+    background-color brand-purple
     &:hover
-      background-color lighten(brand-purple, 10)
       color lighten(brand-white, 10)
+      background-color lighten(brand-purple, 10)
+  &.blue
+    color brand-white
+    background-color brand-blue
+    &:hover
+      color lighten(brand-white, 10)
+      background-color lighten(brand-blue, 10)
+  &.link
+    color brand-lighter-navy
+    &:hover
+      text-decoration underline
 
 .tag
   body-3()
