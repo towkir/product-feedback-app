@@ -1,11 +1,16 @@
 <script>
+import {goto} from "$app/navigation";
 import IconArrowHr from "@/components/vectors/IconArrowHr.svelte";
 
 export let showEditButton = false;
+
+function goBack() {
+    goto('/');
+}
 </script>
 
 <div class="navigation-header">
-    <button class="btn link back"><IconArrowHr />Go Back</button>
+    <button class="btn link back" on:click={() => goBack()}><IconArrowHr />Go Back</button>
     {#if showEditButton}
     <button class="btn blue">Edit Feedback</button>
     {/if}
