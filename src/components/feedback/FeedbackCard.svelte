@@ -2,6 +2,7 @@
     import {goto} from "$app/navigation";
     import IconArrowUp from "@/components/vectors/IconArrowVr.svelte";
     import IconChatBubble from "@/components/vectors/IconChatBubble.svelte";
+    import {feedbacks} from "@/store/store.js";
 
     export let feedback = {};
     export let clickable = true;
@@ -10,10 +11,18 @@
             goto(`/feedback/view/${id}`)
         }
     }
+    function addOrRemoveUpvote() {
+        const adjustVotesBy = feedback.voted ? -1 : +1;
+        feedback.upvotes += adjustVotesBy;
+        feedback.voted = !feedback.voted;
+        let currentFeedbackIndex = $feedbacks.findIndex((item) => item.id === feedback.id);
+        $feedbacks.splice(currentFeedbackIndex, 1, feedback)
+        feedbacks.set($feedbacks);
+    }
 </script>
 
 <div class="feedback-card" on:click={() => navigateToDetailsPage(feedback.id)}>
-    <div class="votes {feedback.voted ? 'active' : null}">
+    <div class="votes {feedback.voted ? 'active' : null}" on:click|stopPropagation={() => addOrRemoveUpvote()}>
         <IconArrowUp />
         <span class="vote-count">{feedback.upvotes}</span>
     </div>
