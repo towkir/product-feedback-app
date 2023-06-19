@@ -68,6 +68,6 @@
         box-sizing border-box
         &:hover
           color brand-purple
-        &:not(&:last-child)
+        &:not(:last-child)
           border-bottom 1px solid brand-grey
 </style>
