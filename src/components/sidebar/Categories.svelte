@@ -12,7 +12,7 @@
 <div class="tag-list">
     {#each allCategories as category}
         <span
-            class="tag {selectedCategory === category ? 'active' : null }"
+            class="tag" class:active="{selectedCategory === category}"
             on:click={() => chooseCategory(category)}
         >
             {category}

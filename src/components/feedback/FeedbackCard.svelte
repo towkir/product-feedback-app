@@ -22,7 +22,7 @@
 </script>
 
 <div class="feedback-card" on:click={() => navigateToDetailsPage(feedback.id)}>
-    <div class="votes {feedback.voted ? 'active' : null}" on:click|stopPropagation={() => addOrRemoveUpvote()}>
+    <div class="votes" class:active="{feedback.voted}" on:click|stopPropagation={() => addOrRemoveUpvote()}>
         <IconArrowUp />
         <span class="vote-count">{feedback.upvotes}</span>
     </div>

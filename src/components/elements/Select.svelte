@@ -19,7 +19,7 @@
 </script>
 
 <div
-    class="select {open ? 'open' : null}"
+    class="select" class:open="{open}"
     on:click="{toggleDropdown}"
     use:clickOutside
     on:outClick={handleClickOutside}
