@@ -1,5 +1,5 @@
 <script>
-    import CommentCard from "@/components/comments/CommentCard.svelte";
+    import CommentViewCard from "@/components/comments/CommentViewCard.svelte";
     import {singularOrPlural} from "@/scripts/helper.js";
 
     export let comments = [];
@@ -8,7 +8,7 @@
 <div class="comments-wrapper">
     <h3>{singularOrPlural(comments.length, 'Comment', 'Comments')}</h3>
     {#each comments as comment}
-        <CommentCard comment="{comment}"/>
+        <CommentViewCard comment="{comment}"/>
     {/each}
 </div>
 
@@ -17,6 +17,7 @@
     background-color brand-white
     border-radius 10px
     padding 24px 32px
+    margin-bottom 24px
     h3
       heading-3()
       color brand-light-navy
