@@ -40,15 +40,18 @@
                 </div>
                 <span class="action" on:click={() => toggleWriteMode()}>{writeModeOn ? 'Cancel' : 'Reply'}</span>
             </div>
-            <p class="message-content">{message.content}</p>
+            <p class="message-content">
+                {#if message.replyingTo}
+                    <span>{`@${message.replyingTo}`}</span>
+                {/if}
+                {message.content}
+            </p>
         </div>
     </div>
     {#if writeModeOn}
         <MessageCreateCard role="reply" />
     {/if}
 </div>
-
-
 
 <style lang="stylus">
   .message
@@ -117,4 +120,8 @@
         p.message-content
           body-2()
           color brand-lighter-navy
+          span
+            color brand-purple
+            font-weight 700
+            cursor pointer
 </style>
