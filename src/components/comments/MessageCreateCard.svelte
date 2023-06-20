@@ -5,6 +5,7 @@
     const characterLimit = 250;
     let comment = '';
     $: remainingCharacter = comment.length <= characterLimit ? characterLimit - comment.length : 0;
+    $: disableButton = (comment.length > characterLimit) || null
 </script>
 
 <div class="message {role}">
@@ -22,7 +23,7 @@
             {comment.length} / {characterLimit}
         {/if}
     </span>
-    <button disabled="{(comment.length > characterLimit) || null}" class="btn primary">Post {capitalizeFirstChar(role)}</button>
+    <button disabled="{disableButton}" class="btn primary">Post {capitalizeFirstChar(role)}</button>
 </div>
 
 <style lang="stylus">
