@@ -1,10 +1,10 @@
 <script>
     import {goto} from "$app/navigation";
+    import {feedbacks, comments} from "@/store/store.js";
     import IconArrowUp from "@/components/vectors/IconArrowVr.svelte";
     import IconChatBubble from "@/components/vectors/IconChatBubble.svelte";
-    import {feedbacks} from "@/store/store.js";
 
-    export let feedback = {};
+    export let feedback;
     export let clickable = true;
     function navigateToDetailsPage(id) {
         if (clickable) {
@@ -19,6 +19,8 @@
         $feedbacks.splice(currentFeedbackIndex, 1, feedback)
         feedbacks.set($feedbacks);
     }
+
+    $: commentsInThisFeedback = $comments.filter((item) => item.feedbackId === feedback.id);
 </script>
 
 <div class="feedback-card" on:click={() => navigateToDetailsPage(feedback.id)}>
@@ -34,7 +36,7 @@
         </div>
         <div class="comments">
             <IconChatBubble />
-            <span class="comment-count">{feedback.comments.length}</span>
+            <span class="comment-count">{commentsInThisFeedback.length}</span>
         </div>
     </div>
 </div>

@@ -8,15 +8,9 @@
 
     let writeModeOn = false;
 
-    function hasNoReplies() {
-        return role === 'comment' && replies.length === 0;
-    }
-    function hasReplies() {
-        return role === 'comment' && replies.length > 0;
-    }
-    function isLastReply() {
-        return role === 'reply' && isLastItem;
-    }
+    $: hasNoReplies = role === 'comment' && replies.length === 0;
+    $: hasReplies = role === 'comment' && replies.length > 0;
+    $: isLastReply = role === 'reply' && isLastItem;
     function toggleWriteMode() {
         writeModeOn = !writeModeOn;
     }
@@ -24,9 +18,9 @@
 
 <div
     class="message {role}"
-    class:no-replies="{hasNoReplies()}"
-    class:has-replies={hasReplies()}
-    class:last="{isLastReply()}"
+    class:no-replies="{hasNoReplies}"
+    class:has-replies={hasReplies}
+    class:last="{isLastReply}"
 >
     <div class="comments-and-replies">
         <div class="avatar">
@@ -49,7 +43,11 @@
         </div>
     </div>
     {#if writeModeOn}
-        <MessageCreateCard role="reply" commentId="{message.id}" replyingTo="{message.user.username}"/>
+        <MessageCreateCard
+            role="reply"
+            commentId="{role === 'comment' ? message.id : message.commentId}"
+            replyingTo="{message.user.username}"
+        />
     {/if}
 </div>
 

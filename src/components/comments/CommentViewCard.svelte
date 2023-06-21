@@ -1,7 +1,7 @@
 <script>
     import {replies} from "@/store/store.js";
     import MessageViewCard from "@/components/comments/MessageViewCard.svelte";
-    export let comment = {};
+    export let comment;
     $: repliesOnThisComment = $replies.filter((item) => item.commentId === comment.id);
 </script>
 

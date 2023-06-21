@@ -44,6 +44,7 @@
         } else {
             postReply();
         }
+        message = '';
     }
     $: remainingCharacter = message.length <= characterLimit ? characterLimit - message.length : 0;
     $: disableButton = (message.length > characterLimit) || null

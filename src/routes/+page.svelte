@@ -19,10 +19,6 @@
         'Least Comments',
     ];
 
-    function getNumericFromArrayOrNum(type) {
-        return typeof type === 'number' ? type : type.length;
-    }
-
     function sortFeedbacks(event) {
         sortLabel = event.detail;
         const sortOptions = {
@@ -31,7 +27,7 @@
         };
         const sortKeys = {
             Upvotes: 'upvotes',
-            Comments: 'comments',
+            Comments: 'commentCount',
         };
         const options = event.detail.split(' ');
         sortBy = sortKeys[options[1]];
@@ -45,12 +41,11 @@
 
     $: feedbacksFiltered = filterBy !== 'All' ? feedbacksWithCommentCount
         .filter((item) => item.category === filterBy) : feedbacksWithCommentCount;
-    $: feedbacksFIlteredAndSorted = feedbacksFiltered
-        .sort((a, b) => sortIn === 'ascending' ? getNumericFromArrayOrNum(a[sortBy]) - getNumericFromArrayOrNum(b[sortBy])
-            : getNumericFromArrayOrNum(b[sortBy]) - getNumericFromArrayOrNum(a[sortBy]));
+    $: feedbacksFilteredAndSorted = feedbacksFiltered
+        .sort((a, b) => sortIn === 'ascending' ? a[sortBy] - b[sortBy] : b[sortBy] - a[sortBy]);
     onMount(() => {
         for (let i = 0; i < $feedbacks.length; i += 1) {
-            $feedbacks[i].comments = $comments.filter((item) => item.feedbackId === $feedbacks[i].id);
+            $feedbacks[i].commentCount = $comments.filter((item) => item.feedbackId === $feedbacks[i].id).length;
         }
         feedbacksWithCommentCount = $feedbacks;
     })
@@ -60,13 +55,13 @@
     <Sidebar selectedCategory="{filterBy}" on:categorySelection={filterFeedbacks}/>
     <main>
         <Header
-            feedbackCount="{feedbacksFIlteredAndSorted.length}"
+            feedbackCount="{feedbacksFilteredAndSorted.length}"
             sortValue="{sortLabel}"
             sortOptions="{sortLabels}"
             on:sortFeedbacks={sortFeedbacks}
         />
-        {#if feedbacksFIlteredAndSorted.length > 0}
-            {#each feedbacksFIlteredAndSorted as feedback}
+        {#if feedbacksFilteredAndSorted.length > 0}
+            {#each feedbacksFilteredAndSorted as feedback}
                 <FeedbackCard {feedback} />
             {/each}
         {:else}
