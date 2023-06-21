@@ -24,7 +24,6 @@
     }
 
     function sortFeedbacks(event) {
-        console.log(event);
         sortLabel = event.detail;
         const sortOptions = {
             Most: 'descending',
