@@ -1,10 +1,11 @@
 <script>
-import MessageCreateCard from "@/components/comments/MessageCreateCard.svelte";
+    export let feedbackId;
+    import MessageCreateCard from "@/components/comments/MessageCreateCard.svelte";
 </script>
 
 <div class="create-comment-wrapper">
     <h3>Add Comment</h3>
-    <MessageCreateCard />
+    <MessageCreateCard role="comment" feedbackId="{feedbackId}"/>
 </div>
 
 <style lang="stylus">

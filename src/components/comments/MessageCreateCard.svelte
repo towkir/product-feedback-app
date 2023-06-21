@@ -1,29 +1,76 @@
 <script>
-    import {singularOrPlural, capitalizeFirstChar} from "@/scripts/helper.js";
+    import {comments, replies, currentUser} from "@/store/store.js";
+    import {singularOrPlural, capitalizeFirstChar, findNextValidId} from "@/scripts/helper.js";
 
     export let role = 'comment'; // or 'reply'
+    export let feedbackId;
+    export let commentId;
+    export let replyingTo;
     const characterLimit = 250;
-    let comment = '';
-    $: remainingCharacter = comment.length <= characterLimit ? characterLimit - comment.length : 0;
-    $: disableButton = (comment.length > characterLimit) || null
+    let message = '';
+
+    function postComment() {
+        const listOfIds = $comments.map(item => item.id);
+        const newCommentId = findNextValidId(listOfIds);
+        const comment = {
+            id: newCommentId,
+            feedbackId,
+            content: message,
+            user: $currentUser,
+        };
+        comments.update((list) => {
+            list.push(comment);
+            return list;
+        });
+    }
+    function postReply() {
+        const listOfIds = $replies.map(item => item.id);
+        const newReplyId = findNextValidId(listOfIds);
+        const reply = {
+            id: newReplyId,
+            commentId,
+            content: message,
+            replyingTo,
+            user: $currentUser,
+        };
+        replies.update((list) => {
+            list.push(reply);
+            return list;
+        });
+    }
+    function postMessage() {
+        if (role === 'comment') {
+            postComment();
+        } else {
+            postReply();
+        }
+    }
+    $: remainingCharacter = message.length <= characterLimit ? characterLimit - message.length : 0;
+    $: disableButton = (message.length > characterLimit) || null
 </script>
 
 <div class="message {role}">
     <!-- svelte-ignore a11y-autofocus -->
     <textarea
-        bind:value={comment}
+        bind:value={message}
         class="input"
         autofocus
-        class:error={comment.length > characterLimit}
+        class:error={message.length > characterLimit}
         placeholder="Type your {role} here"></textarea>
     <span class="status">
         {#if role === 'comment'}
             {singularOrPlural(remainingCharacter, 'character', 'characters')} left
         {:else}
-            {comment.length} / {characterLimit}
+            {message.length} / {characterLimit}
         {/if}
     </span>
-    <button disabled="{disableButton}" class="btn primary">Post {capitalizeFirstChar(role)}</button>
+    <button
+        disabled="{disableButton}"
+        class="btn primary"
+        on:click={() => postMessage()}
+    >
+        Post {capitalizeFirstChar(role)}
+    </button>
 </div>
 
 <style lang="stylus">

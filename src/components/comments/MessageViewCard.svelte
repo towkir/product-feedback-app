@@ -49,7 +49,7 @@
         </div>
     </div>
     {#if writeModeOn}
-        <MessageCreateCard role="reply" />
+        <MessageCreateCard role="reply" commentId="{message.id}" replyingTo="{message.user.username}"/>
     {/if}
 </div>
 
@@ -100,6 +100,7 @@
           height 100%
           object-fit cover
       .content
+        flex-grow 1
         .user-and-action
           display flex
           align-items center

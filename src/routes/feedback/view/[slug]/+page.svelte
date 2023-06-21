@@ -10,7 +10,7 @@
     <NavHeader showEditButton="{true}"/>
     <FeedbackCard feedback="{data}" clickable="{false}" />
     <CommentsWrapper comments="{data.comments}"/>
-    <CommentCreateCard />
+    <CommentCreateCard feedbackId="{data.id}"/>
 </div>
 
 <style lang="stylus">
