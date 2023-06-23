@@ -1,12 +1,14 @@
 <script>
     import {createEventDispatcher} from "svelte";
-    const dispatch = createEventDispatcher();
     import IconLightBulb from "@/components/vectors/IconLightBulb.svelte";
     import Select from "@/components/elements/Select.svelte";
     import {singularOrPlural} from "@/scripts/helper.js";
+    import {navigateToFeedbackCreatePage} from "@/scripts/commonActions.js";
+
     export let sortValue = '';
     export let sortOptions = '';
     export let feedbackCount = 0;
+    const dispatch = createEventDispatcher();
     function sortFeedbacks(event) {
         dispatch('sortFeedbacks', event.detail);
     }
@@ -20,7 +22,7 @@
             <Select value="{sortValue}" options="{sortOptions}" on:select={sortFeedbacks}/>
         </div>
     </div>
-    <button class="btn primary">+ Add Feedback</button>
+    <button class="btn primary" on:click={() => navigateToFeedbackCreatePage()}>+ Add Feedback</button>
 </header>
 
 <style lang="stylus">

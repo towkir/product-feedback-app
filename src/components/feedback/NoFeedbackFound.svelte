@@ -1,5 +1,6 @@
 <script>
     import IllustrationDetective from "@/components/vectors/IllustrationDetective.svelte";
+    import {navigateToFeedbackCreatePage} from "@/scripts/commonActions.js";
 </script>
 
 <div class="no-feedback-found">
@@ -7,7 +8,7 @@
         <IllustrationDetective />
         <h2>There is no feedback yet.</h2>
         <p>Got a suggestion? Found a bug that needs to be squashed? We love hearing about new ideas to improve our app.</p>
-        <p><button class="btn primary">+ Add Feedback</button></p>
+        <p><button class="btn primary" on:click={() => navigateToFeedbackCreatePage()}>+ Add Feedback</button></p>
     </div>
 </div>
 
