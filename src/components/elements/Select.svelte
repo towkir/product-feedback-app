@@ -2,6 +2,7 @@
     import {createEventDispatcher} from "svelte";
     import {clickOutside} from "@/scripts/clickOutside.js";
     import IconArrowVr from "@/components/vectors/IconArrowVr.svelte";
+    import IconTick from "@/components/vectors/IconTick.svelte";
 
     export let mode = 'minimal';
     export let label = 'Sort By:'
@@ -30,7 +31,9 @@
     {#if open}
         <div class="options">
             {#each options as option}
-                <div class="option" on:click={() => selectAndEmit(option)}>{option}</div>
+                <div class="option" on:click={() => selectAndEmit(option)}>
+                    {option} {#if option === value}<IconTick/>{/if}
+                </div>
             {/each}
         </div>
     {/if}
@@ -69,6 +72,9 @@
         min-width 255px
         box-sizing border-box
         user-select none
+        display flex
+        align-items center
+        justify-content space-between
         &:hover
           color brand-purple
         &:not(:last-child)
