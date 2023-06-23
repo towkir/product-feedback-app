@@ -23,7 +23,14 @@
     &:hover
       color lighten(brand-white, 10)
       background-color lighten(brand-blue, 10)
+  &.navy
+    color brand-white
+    background-color brand-light-navy
+    &:hover
+      color lighten(brand-white, 10)
+      background-color lighten(brand-light-navy, 10)
   &.link
+    text-decoration none
     color brand-lighter-navy
     &:hover
       text-decoration underline
@@ -44,6 +51,17 @@
   &.active
     color brand-white
     background-color brand-blue
+
+label.label
+  heading-4()
+  display block
+  color brand-light-navy
+  & + span
+    body-4()
+    display block
+    color brand-lighter-navy
+    margin-bottom 16px
+
 
 .input
   font-family inherit
