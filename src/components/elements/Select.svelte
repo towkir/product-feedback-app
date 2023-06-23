@@ -2,6 +2,8 @@
     import {createEventDispatcher} from "svelte";
     import {clickOutside} from "@/scripts/clickOutside.js";
     import IconArrowVr from "@/components/vectors/IconArrowVr.svelte";
+
+    export let mode = 'minimal';
     export let label = 'Sort By:'
     export let placeholder = 'Select Option'
     export let value = '';
@@ -19,7 +21,7 @@
 </script>
 
 <div
-    class="select" class:open="{open}"
+    class="select {mode}" class:open="{open}"
     on:click="{toggleDropdown}"
     use:clickOutside
     on:outClick={handleClickOutside}
@@ -66,8 +68,36 @@
         white-space nowrap
         min-width 255px
         box-sizing border-box
+        user-select none
         &:hover
           color brand-purple
         &:not(:last-child)
           border-bottom 1px solid brand-grey
+    &.regular
+      padding 0
+      margin-bottom 24px
+      &.open
+        .label
+          border 1px solid brand-blue
+      .label
+        padding 13px 24px
+        background-color brand-grey
+        border-radius 5px
+        position relative
+        border 1px solid transparent
+        transition border-color 0.3s ease-in-out
+        span
+          body-2()
+          font-weight 400
+          color brand-light-navy
+          :global(#icon-arrow-hr)
+            position absolute
+            top calc(50% - 3.5px)
+            right 13px
+          :global(#icon-arrow-hr path)
+            stroke brand-blue
+      .options
+        top calc(100% + 16px)
+        left 0
+        width 100%
 </style>
