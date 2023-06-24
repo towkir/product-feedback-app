@@ -40,7 +40,6 @@
         <input id="title" class="input" bind:value={feedbackFormData.title}>
         <label class="label">Category</label>
         <span>Choose a category for your feedback</span>
-<!--        custom select component here -->
         <Select
             mode="regular"
             label=""
@@ -58,35 +57,5 @@
 </div>
 
 <style lang="stylus">
-    .feedback-form-wrapper
-      max-width 540px
-      margin 0 auto
-      .navigation
-        margin-bottom 68px
-        a
-          padding-left 0
-          :global(svg)
-            margin-right 15px
-      .feedback-form
-        background-color brand-white
-        padding 52px 42px 40px
-        border-radius 10px
-        position relative
-        .decoration
-          display inline-block
-          line-height 0
-          position absolute
-          left 42px
-          top -28px
-        h1
-          heading-1()
-          color brand-light-navy
-          margin-bottom 40px
-        input, textarea
-          margin-bottom 24px
-        .action
-          display flex
-          align-items center
-          justify-content flex-end
-          gap 16px
+  @import "src/styles/feedback-form.styl"
 </style>
