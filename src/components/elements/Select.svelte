@@ -64,6 +64,7 @@
       box-shadow 0 10px 40px -7px rgba(55, 63, 104, 0.350492)
       border-radius 10px
       overflow hidden
+      z-index 1
       .option
         color brand-lighter-navy
         background-color brand-white
