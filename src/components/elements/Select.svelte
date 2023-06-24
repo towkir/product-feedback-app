@@ -87,7 +87,7 @@
           border 1px solid brand-blue
       .label
         padding 13px 24px
-        background-color brand-grey
+        background-color brand-light-grey
         border-radius 5px
         position relative
         border 1px solid transparent
