@@ -50,7 +50,7 @@
         <span>Include any specific comments on what should be improved, added, etc.</span>
         <textarea id="detail" class="input" bind:value={feedbackFormData.description}></textarea>
         <div class="action">
-            <button class="btn navy">Cancel</button>
+            <a href="/" class="btn navy">Cancel</a>
             <button class="btn primary" on:click={() => addFeedback()}>Add Feedback</button>
         </div>
     </div>
