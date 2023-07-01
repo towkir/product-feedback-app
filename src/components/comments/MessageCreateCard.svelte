@@ -4,8 +4,8 @@
 
     export let role = 'comment'; // or 'reply'
     export let feedbackId;
-    export let commentId;
-    export let replyingTo;
+    export let commentId = 0;
+    export let replyingTo = '';
     const characterLimit = 250;
     let message = '';
 
