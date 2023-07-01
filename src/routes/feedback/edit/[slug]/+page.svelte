@@ -1,12 +1,14 @@
 <script>
     import {goto} from "$app/navigation";
-    import {feedbacks, categories, statuses} from "@/store/store.js";
+    import {feedbacks, categories, statuses, comments, replies} from "@/store/store.js";
     import IconArrowHr from "@/components/vectors/IconArrowHr.svelte";
     import IconDecorationEdit from "@/components/vectors/IconDecorationEdit.svelte";
     import Select from "@/components/elements/Select.svelte";
+    import Modal from "@/components/elements/Modal.svelte";
 
     export let data;
 
+    const currentFeedbackIndex = $feedbacks.findIndex((item) => item.id === data.id);
     const allStatuses = $statuses.map((item) => item.name);
     let feedbackFormData = {...data};
 
@@ -17,10 +19,36 @@
         feedbackFormData.status = data.detail;
     }
     function updateFeedback() {
-        let currentFeedbackIndex = $feedbacks.findIndex((item) => item.id === data.id);
-        $feedbacks.splice(currentFeedbackIndex, 1, feedbackFormData)
+        $feedbacks.splice(currentFeedbackIndex, 1, feedbackFormData);
         feedbacks.set($feedbacks);
         goto('/');
+    }
+    function deleteRepliesRelatedToThisFeedback(commentIDs) {
+        replies.set($replies.filter((item) => !commentIDs.includes(item.commentId)));
+    }
+    function deleteCommentsMadeOnThisFeedback() {
+        const commentIDs = $comments.filter((item) => item.feedbackId === data.id).map((item) => item.id);
+        deleteRepliesRelatedToThisFeedback(commentIDs);
+        comments.set($comments.filter((item) => !item.feedbackId === data.id));
+    }
+    function deleteFeedback() {
+        deleteCommentsMadeOnThisFeedback();
+        $feedbacks.splice(currentFeedbackIndex, 1);
+        feedbacks.set($feedbacks);
+        hideDeleteConfirmation();
+        goto('/');
+    }
+    function showDeleteConfirmation() {
+        const showModal = new CustomEvent('modal::show', {
+            detail: 'delete-feedback-modal',
+        })
+        window.dispatchEvent(showModal);
+    }
+    function hideDeleteConfirmation() {
+        const hideModal = new CustomEvent('modal::hide', {
+            detail: 'delete-feedback-modal',
+        })
+        window.dispatchEvent(hideModal);
     }
 </script>
 <div class="feedback-form-wrapper">
@@ -53,13 +81,26 @@
         <span>Include any specific comments on what should be improved, added, etc.</span>
         <textarea id="detail" class="input" bind:value={feedbackFormData.description}></textarea>
         <div class="action">
-            <button class="btn red">Delete</button>
+            <button class="btn red" on:click={() => showDeleteConfirmation()}>Delete</button>
             <span class="spacer"></span>
             <a href="/" class="btn navy">Cancel</a>
             <button class="btn primary" on:click={() => updateFeedback()}>Save Changes</button>
         </div>
     </div>
 </div>
+
+<Modal
+    id="delete-feedback-modal"
+    variant="red"
+    okText="Delete"
+    on:ok={() => deleteFeedback()}
+>
+    <h4 slot="header">Delete Feedback?</h4>
+    <p slot="body">
+        Are you sure you want to delete this feedback? <br>This action will delete all the comments and
+        replies made on this feedback.
+    </p>
+</Modal>
 
 <style lang="stylus">
   @import "src/styles/feedback-form.styl"

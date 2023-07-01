@@ -7,7 +7,7 @@
     export let title = 'Modal Title';
     export let noFooter = false;
     export let okText = 'Okay';
-    export let canPressOk;
+    export let canPressOk = true;
     export let closeOnEsc = true;
     export let closeOnBackdrop = true;
 
@@ -34,7 +34,7 @@
         removeEventListenerForCloseOnEsc();
     }
     function onOkay() {
-        dispatch('ok')
+        dispatch('ok');
     }
     function handleEsc(e) {
         if (e.keyCode === 27) {
