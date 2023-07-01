@@ -23,7 +23,7 @@
 
 <div
     class="select {mode}" class:open="{open}"
-    on:click="{toggleDropdown}"
+    on:click={() => toggleDropdown()}
     use:clickOutside
     on:outClick={handleClickOutside}
 >
