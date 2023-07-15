@@ -6,6 +6,8 @@
 
     export let feedback;
     export let clickable = true;
+    export let view = 'list';
+    export let statusColor = '';
     function navigateToDetailsPage(id) {
         if (clickable) {
             goto(`/feedback/view/${id}`)
@@ -23,10 +25,16 @@
     $: commentsInThisFeedback = $comments.filter((item) => item.feedbackId === feedback.id);
 </script>
 
-<div class="feedback-card" on:click={() => navigateToDetailsPage(feedback.id)}>
-    <div class="votes" class:active="{feedback.voted}" on:click|stopPropagation={() => addOrRemoveUpvote()}>
-        <IconArrowUp />
-        <span class="vote-count">{feedback.upvotes}</span>
+<div class="feedback-card {view}" on:click={() => navigateToDetailsPage(feedback.id)}>
+    <div class="votes-and-comments">
+        <div class="votes" class:active="{feedback.voted}" on:click|stopPropagation={() => addOrRemoveUpvote()}>
+            <IconArrowUp />
+            <span class="vote-count">{feedback.upvotes}</span>
+        </div>
+        <div class="comments">
+            <IconChatBubble />
+            <span class="comment-count">{commentsInThisFeedback.length}</span>
+        </div>
     </div>
     <div class="contents">
         <div class="details">
@@ -34,11 +42,23 @@
             <p>{feedback.description}</p>
             <span class="tag" on:click|stopPropagation={() => {}}>{feedback.category}</span>
         </div>
-        <div class="comments">
-            <IconChatBubble />
-            <span class="comment-count">{commentsInThisFeedback.length}</span>
+        <div class="comments-and-votes">
+            <div class="comments">
+                <IconChatBubble />
+                <span class="comment-count">{commentsInThisFeedback.length}</span>
+            </div>
+            <div class="votes" class:active="{feedback.voted}" on:click|stopPropagation={() => addOrRemoveUpvote()}>
+                <IconArrowUp />
+                <span class="vote-count">{feedback.upvotes}</span>
+            </div>
         </div>
     </div>
+    {#if (view === 'grid' && statusColor)}
+        <div class="status-tag">
+            <span class="tag-badge" style="background-color: {statusColor}"></span>{feedback.status}
+        </div>
+        <div class="status-ribbon" style="background-color: {statusColor}"></div>
+    {/if}
 </div>
 
 <style lang="stylus">
@@ -51,6 +71,28 @@
     align-items flex-start
     gap 40px
     cursor pointer
+    position relative
+    &.grid
+      flex-direction column-reverse
+      gap 18px
+      border-radius 5px
+      overflow hidden
+      .votes-and-comments
+        width 100%
+        display flex
+        align-items center
+        justify-content space-between
+        .votes
+          padding 8px 12px
+          flex-direction row
+        .comments
+          display flex
+      .contents
+        .comments-and-votes
+          .comments
+            display none
+      .status-tag
+        display block
 
     &:hover
       .contents
@@ -58,6 +100,9 @@
           h3
             color brand-blue
 
+    .votes-and-comments
+      .comments
+        display none
     .votes
       background-color brand-grey
       padding 12px 9px 8px 9px
@@ -111,12 +156,38 @@
         :global(span.tag)
           margin 0
 
-      .comments
-        display flex
-        align-items center
+      .comments-and-votes
+        .votes
+          display none
+    .comments
+      display flex
+      align-items center
 
-        .comment-count
-          heading-3()
-          color brand-light-navy
-          margin-left 8px
+      .comment-count
+        heading-3()
+        color brand-light-navy
+        margin-left 8px
+    .status-tag
+      display none
+      body-1()
+      color brand-lighter-navy
+      position relative
+      padding-left 20px
+      .tag-badge
+        position absolute
+        left 0
+        top calc(50% - 4px)
+        display inline-block
+        width 8px
+        height 8px
+        border-radius 8px
+    .status-ribbon
+      display block
+      height 6px
+      width 100%
+      position absolute
+      top 0
+      left 0
+      background-color red
+
 </style>
