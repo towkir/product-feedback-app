@@ -1,7 +1,6 @@
 <script>
-    import {goto} from "$app/navigation";
     import {feedbacks, categories, statuses, comments, replies} from "@/store/store.js";
-    import IconArrowHr from "@/components/vectors/IconArrowHr.svelte";
+    import NavHeader from "@/components/NavHeader.svelte";
     import IconDecorationEdit from "@/components/vectors/IconDecorationEdit.svelte";
     import Select from "@/components/elements/Select.svelte";
     import Modal from "@/components/elements/Modal.svelte";
@@ -12,6 +11,9 @@
     const allStatuses = $statuses.map((item) => item.name);
     let feedbackFormData = {...data};
 
+    function goBack() {
+        history.back();
+    }
     function setCategory(data) {
         feedbackFormData.category = data.detail;
     }
@@ -21,7 +23,7 @@
     function updateFeedback() {
         $feedbacks.splice(currentFeedbackIndex, 1, feedbackFormData);
         feedbacks.set($feedbacks);
-        goto('/');
+        goBack();
     }
     function deleteRepliesRelatedToThisFeedback(commentIDs) {
         replies.set($replies.filter((item) => !commentIDs.includes(item.commentId)));
@@ -36,7 +38,7 @@
         $feedbacks.splice(currentFeedbackIndex, 1);
         feedbacks.set($feedbacks);
         hideDeleteConfirmation();
-        goto('/');
+        goBack();
     }
     function showDeleteConfirmation() {
         const showModal = new CustomEvent('modal::show', {
@@ -52,9 +54,7 @@
     }
 </script>
 <div class="feedback-form-wrapper">
-    <div class="navigation">
-        <a href="/" class="btn link"><IconArrowHr />Go Back</a>
-    </div>
+    <NavHeader />
     <div class="feedback-form">
         <span class="decoration"><IconDecorationEdit /></span>
         <h1>Editing '{data.title}'</h1>

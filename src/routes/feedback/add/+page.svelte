@@ -1,10 +1,10 @@
 <script>
-    import {goto} from "$app/navigation";
+    import {afterNavigate, goto} from "$app/navigation";
     import {feedbacks, categories} from "@/store/store.js";
-    import IconArrowHr from "@/components/vectors/IconArrowHr.svelte";
+    import {findNextValidId} from "@/scripts/helper.js";
+    import NavHeader from "@/components/NavHeader.svelte";
     import IconDecorationAdd from "@/components/vectors/IconDecorationAdd.svelte";
     import Select from "@/components/elements/Select.svelte";
-    import {findNextValidId} from "@/scripts/helper.js";
 
     let feedbackFormData = {
         id: 0,
@@ -15,9 +15,14 @@
         description: '',
         comments: [],
     }
+    let cameFrom = '/';
 
     function setCategory(data) {
         feedbackFormData.category = data.detail;
+    }
+
+    function goBack() {
+        goto(cameFrom);
     }
     function addFeedback() {
         feedbackFormData.id = findNextValidId($feedbacks.map((item) => item.id));
@@ -25,13 +30,16 @@
             list.push(feedbackFormData);
             return list;
         });
-        goto('/');
+        goBack();
     }
+    afterNavigate((navigation) => {
+        if (navigation.from) {
+            cameFrom = navigation.from.route.id;
+        }
+    });
 </script>
 <div class="feedback-form-wrapper">
-    <div class="navigation">
-        <a href="/" class="btn link"><IconArrowHr />Go Back</a>
-    </div>
+    <NavHeader />
     <div class="feedback-form">
         <span class="decoration"><IconDecorationAdd /></span>
         <h1>Create New Feedback</h1>
