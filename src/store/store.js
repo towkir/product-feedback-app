@@ -18,21 +18,25 @@ export const statuses = readable([
         name: 'Suggestion',
         description: '',
         color: '',
+        visible: false,
     },
     {
         name: 'Planned',
         description: 'Ideas prioritized for research',
         color: '#F49F85',
+        visible: true,
     },
     {
         name: 'In-Progress',
         description: 'Currently being developed',
         color: '#AD1FEA',
+        visible: true,
     },
     {
         name: 'Live',
         description: 'Released features',
         color: '#62BCFA',
+        visible: true,
     },
 ]);
 

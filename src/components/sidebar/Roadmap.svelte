@@ -1,13 +1,13 @@
 <script>
     import {statuses, feedbacks} from "@/store/store.js";
-    const filteredStatuses = $statuses.filter(item => item.name !== 'Suggestion');
+    const filteredStatuses = $statuses.filter(item => item.visible === true);
     const getFeedbackCount = (name) => $feedbacks.filter(item => item.status === name).length;
 </script>
 
 <div class="roadmap-wrapper">
     <div class="title">
         <h2>Roadmap</h2>
-        <a href="#" class="details">View</a>
+        <a href="/roadmap" class="details">View</a>
     </div>
     <div class="status-list">
         {#each filteredStatuses as status}
