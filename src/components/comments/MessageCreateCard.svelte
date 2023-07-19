@@ -1,4 +1,5 @@
 <script>
+    import {createEventDispatcher} from "svelte";
     import {comments, replies, currentUser} from "@/store/store.js";
     import {singularOrPlural, capitalizeFirstChar, findNextValidId} from "@/scripts/helper.js";
 
@@ -6,6 +7,7 @@
     export let feedbackId;
     export let commentId = 0;
     export let replyingTo = '';
+    const dispatch = createEventDispatcher();
     const characterLimit = 250;
     let message = '';
 
@@ -37,6 +39,7 @@
             list.push(reply);
             return list;
         });
+        dispatch('reply');
     }
     function postMessage() {
         if (role === 'comment') {

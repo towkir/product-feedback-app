@@ -14,6 +14,9 @@
     function toggleWriteMode() {
         writeModeOn = !writeModeOn;
     }
+    function turnOffWriteMode() {
+        writeModeOn = false;
+    }
 </script>
 
 <div
@@ -47,6 +50,7 @@
             role="reply"
             commentId="{role === 'comment' ? message.id : message.commentId}"
             replyingTo="{message.user.username}"
+            on:reply={() => turnOffWriteMode()}
         />
     {/if}
 </div>
