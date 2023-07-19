@@ -107,4 +107,10 @@
         top calc(100% + 16px)
         left 0
         width 100%
+
+  @media screen and (max-width: 570px)
+    .select
+      &.regular
+        .label
+          padding 12px 16px
 </style>
