@@ -22,4 +22,8 @@
       margin 80px auto
       :global(.feedback-card)
         margin-bottom 24px
+    @media screen and (max-width: 570px)
+      .container
+        width calc(100% - 48px)
+        margin 24px auto
 </style>

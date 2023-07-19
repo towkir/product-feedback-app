@@ -103,4 +103,16 @@
         line-height 12px
       .btn
         white-space nowrap
+  @media screen and (max-width: 690px)
+    .message
+      &.reply
+        flex-direction column
+        .status
+          right 5px
+          top 5px
+          bottom unset
+  @media screen and (max-width: 570px)
+    .message
+      &.reply
+        margin-left 0
 </style>

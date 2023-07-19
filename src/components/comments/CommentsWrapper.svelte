@@ -23,4 +23,7 @@
       color brand-light-navy
       &:not(:last-child)
         margin-bottom 28px
+  @media screen and (max-width: 570px)
+    .comments-wrapper
+      padding 24px
 </style>

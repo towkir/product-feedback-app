@@ -17,4 +17,8 @@
       heading-3()
       color brand-light-navy
       margin-bottom 24px
+
+  @media screen and (max-width: 570px)
+    .create-comment-wrapper
+      padding 24px
 </style>
