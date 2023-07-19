@@ -44,8 +44,9 @@
 
 <style lang="stylus">
   .container
-    width 1110px
-    margin 0 auto
+    width calc(100% - 80px)
+    max-width 1110px
+    margin 80px auto
     nav
       display flex
       align-items center
@@ -85,4 +86,8 @@
         flex-grow 1
         flex-shrink 1
         flex-basis 0
+  @media screen and (max-width: 768px)
+    .container
+      .roadmap-board
+        gap 10px
 </style>

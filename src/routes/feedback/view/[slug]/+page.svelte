@@ -17,8 +17,9 @@
 
 <style lang="stylus">
     .container
-      width 730px
-      margin 0 auto
+      width calc(100% - 80px)
+      max-width 730px
+      margin 80px auto
       :global(.feedback-card)
         margin-bottom 24px
 </style>

@@ -72,10 +72,16 @@
 
 <style lang="stylus">
   .container
-    width 1110px
-    margin 0 auto
+    width calc(100% - 80px)
+    max-width 1110px
+    margin 95px auto
     display flex
     gap 30px
     main
       flex-grow 1
+  @media screen and (max-width: 768px)
+    .container
+      max-width unset
+      margin 56px auto
+      flex-direction column
 </style>
