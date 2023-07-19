@@ -189,5 +189,30 @@
       top 0
       left 0
       background-color red
+  @media screen and (max-width: 768px)
+    .feedback-card
+      &.grid
+        padding 24px
 
+  @media screen and (max-width: 570px)
+    .feedback-card
+      flex-direction column-reverse
+      gap 18px
+      padding 24px
+      .votes-and-comments
+        width 100%
+        display flex
+        align-items center
+        justify-content space-between
+        .votes
+          padding 8px 12px
+          flex-direction row
+        .comments
+          display flex
+      .contents
+        .comments-and-votes
+          .comments
+            display none
+      .status-tag
+        display block
 </style>
