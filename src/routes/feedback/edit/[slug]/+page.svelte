@@ -1,4 +1,5 @@
 <script>
+    import {goto} from "$app/navigation";
     import {feedbacks, categories, statuses, comments, replies} from "@/store/store.js";
     import NavHeader from "@/components/NavHeader.svelte";
     import IconDecorationEdit from "@/components/vectors/IconDecorationEdit.svelte";
@@ -38,7 +39,7 @@
         $feedbacks.splice(currentFeedbackIndex, 1);
         feedbacks.set($feedbacks);
         hideDeleteConfirmation();
-        goBack();
+        goto('/');
     }
     function showDeleteConfirmation() {
         const showModal = new CustomEvent('modal::show', {
