@@ -25,26 +25,24 @@
     class:has-replies={hasReplies}
     class:last="{isLastReply}"
 >
-    <div class="comments-and-replies">
+    <div class="avatar-and-author">
         <div class="avatar">
             <img src="{message.user.image}" alt="photo of {message.user.name}">
         </div>
-        <div class="content">
-            <div class="user-and-action">
-                <div class="user">
-                    <h5>{message.user.name}</h5>
-                    <p>{`@${message.user.username}`}</p>
-                </div>
-                <span class="action" on:click={() => toggleWriteMode()}>{writeModeOn ? 'Cancel' : 'Reply'}</span>
+        <div class="user-and-action">
+            <div class="user">
+                <h5>{message.user.name}</h5>
+                <p>{`@${message.user.username}`}</p>
             </div>
-            <p class="message-content">
-                {#if message.replyingTo}
-                    <span>{`@${message.replyingTo}`}</span>
-                {/if}
-                {message.content}
-            </p>
+            <span class="action" on:click={() => toggleWriteMode()}>{writeModeOn ? 'Cancel' : 'Reply'}</span>
         </div>
     </div>
+    <p class="message-content">
+        {#if message.replyingTo}
+            <span>{`@${message.replyingTo}`}</span>
+        {/if}
+        {message.content}
+    </p>
     {#if writeModeOn}
         <MessageCreateCard
             role="reply"
@@ -88,7 +86,7 @@
         width 1px
         height 100%
         background-color brand-grey
-    .comments-and-replies
+    .avatar-and-author
       display flex
       gap 32px
       .avatar
@@ -101,30 +99,43 @@
           width 100%
           height 100%
           object-fit cover
-      .content
+      .user-and-action
         flex-grow 1
-        .user-and-action
-          display flex
-          align-items center
-          justify-content space-between
-          margin-bottom 17px
-          .user
-            h5
-              heading-4()
-              color brand-light-navy
-            p
-              body-4()
-              color brand-lighter-navy
-          .action
-            body-3()
-            color brand-blue
-            text-decoration underline
-            cursor pointer
-        p.message-content
-          body-2()
-          color brand-lighter-navy
-          span
-            color brand-purple
-            font-weight 700
-            cursor pointer
+        display flex
+        align-items center
+        justify-content space-between
+        margin-bottom 17px
+        .user
+          h5
+            heading-4()
+            color brand-light-navy
+          p
+            body-4()
+            color brand-lighter-navy
+        .action
+          body-3()
+          color brand-blue
+          text-decoration underline
+          cursor pointer
+    p.message-content
+      body-2()
+      color brand-lighter-navy
+      padding-left 72px
+      span
+        color brand-purple
+        font-weight 700
+        cursor pointer
+  @media screen and (max-width: 570px)
+    .message
+      &.reply
+        margin-left 24px
+        &:before
+          top 0
+        &.last:before
+          height 20px
+      &.comment.has-replies
+        &:before
+          display none
+      p.message-content
+        padding-left 0
 </style>
