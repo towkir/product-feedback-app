@@ -58,7 +58,7 @@
     <textarea
         bind:value={message}
         class="input"
-        autofocus
+        autofocus="{role === 'reply'}"
         class:error={message.length > characterLimit}
         placeholder="Type your {role} here"></textarea>
     <span class="status">
