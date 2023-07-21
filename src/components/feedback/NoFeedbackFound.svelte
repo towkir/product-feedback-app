@@ -20,7 +20,8 @@
       background-color brand-white
       border-radius 10px
       .wrapper
-        width 410px
+        width 100%
+        max-width 410px
         margin 110px auto
         text-align center
         :global(svg)
@@ -34,4 +35,16 @@
           color brand-lighter-navy
           &:first-of-type
             margin-bottom 48px
+    @media screen and (max-width: 690px)
+      .no-feedback-found
+        margin 24px
+        .wrapper
+          padding 24px
+          max-width 410px
+          margin 40px auto
+          :global(svg)
+            margin-bottom 24px
+          p
+            &:first-of-type
+              margin-bottom 24px
 </style>
