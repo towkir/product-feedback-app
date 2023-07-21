@@ -1,4 +1,5 @@
 <script>
+    import {onMount} from "svelte";
     import IconArrowHr from "@/components/vectors/IconArrowHr.svelte";
     import FeedbackCard from "@/components/feedback/FeedbackCard.svelte";
     import { navigateToFeedbackCreatePage } from "@/scripts/commonActions.js";
@@ -16,6 +17,15 @@
     function feedbackCount(name) {
         return feedbacksOfStatus(name).length;
     }
+    function clearOverflow() { // applied from homepage in mobile view;
+        if (document.body.hasAttribute('style')) {
+            document.body.removeAttribute('style');
+        }
+    }
+
+    onMount(() => {
+        clearOverflow();
+    })
 </script>
 
 <div class="container">
