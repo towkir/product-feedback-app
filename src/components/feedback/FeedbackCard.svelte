@@ -72,6 +72,8 @@
     gap 40px
     cursor pointer
     position relative
+    user-select none
+    -webkit-tap-highlight-color transparent
     &.grid
       flex-direction column-reverse
       gap 18px

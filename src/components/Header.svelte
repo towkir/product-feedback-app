@@ -61,4 +61,5 @@
           .sort-by
             :global(.select)
               padding-left 0
+              -webkit-tap-highlight-color transparent
 </style>
