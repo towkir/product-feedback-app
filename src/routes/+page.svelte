@@ -63,9 +63,11 @@
             on:sortFeedbacks={sortFeedbacks}
         />
         {#if feedbacksFilteredAndSorted.length > 0}
-            {#each feedbacksFilteredAndSorted as feedback}
-                <FeedbackCard {feedback} />
-            {/each}
+            <div class="feedback-list">
+                {#each feedbacksFilteredAndSorted as feedback}
+                    <FeedbackCard {feedback} />
+                {/each}
+            </div>
         {:else if (dataLoaded)}
             <NoFeedbackFound />
         {/if}
@@ -81,9 +83,21 @@
     gap 30px
     main
       flex-grow 1
-  @media screen and (max-width: 768px)
+      .feedback-list
+        display contents
+  @media screen and (max-width: 991px)
     .container
       max-width unset
       margin 56px auto
       flex-direction column
+  @media screen and (max-width: 690px)
+    .container
+      width 100%
+      margin 0 0 56px
+      padding-top 75px
+      gap 0
+      main
+        .feedback-list
+          display block
+          margin 0 24px
 </style>

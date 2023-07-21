@@ -44,4 +44,21 @@
         h3
           heading-3()
           min-width 150px
+    @media screen and (max-width: 690px)
+      header
+        position sticky
+        top 75px
+        z-index 4
+        border-radius 0
+    @media screen and (max-width: 570px)
+      header
+        padding 14px 24px
+        .feedback-info
+          padding-left 0
+          :global(#icon-light-bulb),
+          h3
+            display none
+          .sort-by
+            :global(.select)
+              padding-left 0
 </style>

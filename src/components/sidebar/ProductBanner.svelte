@@ -27,4 +27,17 @@
         heading-2()
       p
         body-2()
+  @media screen and (max-width: 991px)
+    .product-banner
+      height auto
+  @media screen and (max-width: 690px)
+    .product-banner
+      position fixed
+      top 0
+      left 0
+      width 100%
+      padding 16px 24px
+      margin-bottom 0
+      border-radius 0
+      z-index 5
 </style>
