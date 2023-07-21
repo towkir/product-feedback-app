@@ -80,7 +80,7 @@
             on:select={setStatus}/>
         <label class="label" for="detail">Feedback Detail</label>
         <span>Include any specific comments on what should be improved, added, etc.</span>
-        <textarea id="detail" class="input" bind:value={feedbackFormData.description}></textarea>
+        <textarea id="detail" class="input" rows="4" bind:value={feedbackFormData.description}></textarea>
         <div class="action">
             <button class="btn red" on:click={() => showDeleteConfirmation()}>Delete</button>
             <span class="spacer"></span>
