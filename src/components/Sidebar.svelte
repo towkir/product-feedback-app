@@ -13,6 +13,15 @@
             document.body.removeAttribute('style');
         }
     }
+    function releaseOverflow() { // applied from homepage in mobile view;
+        if (drawerOpen) {
+            document.body.removeAttribute('style');
+        }
+    }
+
+    onDestroy(() => {
+        releaseOverflow();
+    })
 </script>
 
 <div class="sidebar-wrapper">
