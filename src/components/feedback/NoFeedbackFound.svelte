@@ -13,38 +13,38 @@
 </div>
 
 <style lang="stylus">
+  .no-feedback-found
+    display flex
+    align-items center
+    justify-content center
+    background-color brand-white
+    border-radius 10px
+    .wrapper
+      width 100%
+      max-width 410px
+      margin 110px auto
+      text-align center
+      :global(svg)
+        margin-bottom 54px
+      h2
+        heading-1()
+        color brand-light-navy
+        margin-bottom 16px
+      p
+        body-1()
+        color brand-lighter-navy
+        &:first-of-type
+          margin-bottom 48px
+  @media screen and (max-width: 690px)
     .no-feedback-found
-      display flex
-      align-items center
-      justify-content center
-      background-color brand-white
-      border-radius 10px
+      margin 24px
       .wrapper
-        width 100%
+        padding 24px
         max-width 410px
-        margin 110px auto
-        text-align center
+        margin 40px auto
         :global(svg)
-          margin-bottom 54px
-        h2
-          heading-1()
-          color brand-light-navy
-          margin-bottom 16px
+          margin-bottom 24px
         p
-          body-1()
-          color brand-lighter-navy
           &:first-of-type
-            margin-bottom 48px
-    @media screen and (max-width: 690px)
-      .no-feedback-found
-        margin 24px
-        .wrapper
-          padding 24px
-          max-width 410px
-          margin 40px auto
-          :global(svg)
             margin-bottom 24px
-          p
-            &:first-of-type
-              margin-bottom 24px
 </style>
