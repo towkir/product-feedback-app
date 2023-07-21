@@ -13,6 +13,11 @@
       position absolute
       left 42px
       top -28px
+      width 56px
+      height 56px
+      :global(svg)
+        width 100%
+        height 100%
     h1
       heading-1()
       color brand-light-navy
@@ -31,9 +36,14 @@
     margin 24px auto
     .feedback-form
       padding 52px 24px 40px
+      .decoration
+        top -20px
+        left 24px
+        width 40px
+        height 40px
       .action
         text-align center
-        flex-direction column
+        flex-direction column-reverse
         align-items stretch
         .spacer
           display none
