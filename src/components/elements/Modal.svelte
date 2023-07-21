@@ -121,7 +121,7 @@
     width 100vw
     height 100vh
     z-index 50
-    background-color alpha(#000, 0.5)
+    background-color alpha(brand-black, 0.5)
     transition opacity 0.3s ease-in-out
 
     &.hidden
