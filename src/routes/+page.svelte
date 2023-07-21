@@ -3,8 +3,7 @@
     import Header from "@/components/Header.svelte";
     import NoFeedbackFound from "@/components/feedback/NoFeedbackFound.svelte";
     import FeedbackCard from "@/components/feedback/FeedbackCard.svelte";
-    import {feedbacks} from "@/store/store.js";
-    import {comments} from "@/store/store.js";
+    import {feedbacks, comments} from "@/store/store.js";
     import {onMount} from "svelte";
 
     let sortBy = 'upvotes'; // or 'comments'
@@ -18,6 +17,8 @@
         'Most Comments',
         'Least Comments',
     ];
+
+    let dataLoaded = false;
 
     function sortFeedbacks(event) {
         sortLabel = event.detail;
@@ -43,11 +44,12 @@
         .filter((item) => item.category === filterBy) : feedbacksWithCommentCount;
     $: feedbacksFilteredAndSorted = feedbacksFiltered
         .sort((a, b) => sortIn === 'ascending' ? a[sortBy] - b[sortBy] : b[sortBy] - a[sortBy]);
-    onMount(() => {
+    onMount(() => { // needed for sorting with comments
         for (let i = 0; i < $feedbacks.length; i += 1) {
             $feedbacks[i].commentCount = $comments.filter((item) => item.feedbackId === $feedbacks[i].id).length;
         }
         feedbacksWithCommentCount = $feedbacks;
+        dataLoaded = true;
     })
 </script>
 
@@ -55,7 +57,7 @@
     <Sidebar selectedCategory="{filterBy}" on:categorySelection={filterFeedbacks}/>
     <main>
         <Header
-            feedbackCount="{feedbacksFilteredAndSorted.length}"
+            feedbackCount="{feedbacksFilteredAndSorted.length > 0}"
             sortValue="{sortLabel}"
             sortOptions="{sortLabels}"
             on:sortFeedbacks={sortFeedbacks}
@@ -64,7 +66,7 @@
             {#each feedbacksFilteredAndSorted as feedback}
                 <FeedbackCard {feedback} />
             {/each}
-        {:else}
+        {:else if (dataLoaded)}
             <NoFeedbackFound />
         {/if}
     </main>
