@@ -1,17 +1,37 @@
 <script>
+    import {onDestroy} from "svelte";
     import ProductBanner from "@/components/sidebar/ProductBanner.svelte";
     import Categories from "@/components/sidebar/Categories.svelte";
     import Roadmap from "@/components/sidebar/Roadmap.svelte";
     export let selectedCategory;
 
     let drawerOpen = false;
+    let backdropVisible = false;
+    let backdropHiding = true;
+    let backdropShowing = false;
     function toggleDrawer(event) {
         drawerOpen = event.detail;
         if (drawerOpen) {
+            showBackdrop();
             document.body.style.overflowY = 'hidden';
         } else {
+            hideBackdrop();
             document.body.removeAttribute('style');
         }
+    }
+    function showBackdrop() {
+        backdropVisible = true;
+        setTimeout(() => {
+            backdropShowing = true;
+            backdropHiding = false;
+        }, 0);
+    }
+    function hideBackdrop() {
+        backdropHiding = true;
+        backdropShowing = false;
+        setTimeout(() => {
+            backdropVisible = false;
+        }, 300);
     }
     function releaseOverflow() { // applied from homepage in mobile view;
         if (drawerOpen) {
@@ -26,6 +46,11 @@
 
 <div class="sidebar-wrapper">
     <ProductBanner menuOpen="{drawerOpen}" on:toggleBurgerMenu={toggleDrawer}/>
+    <div
+        class="backdrop {backdropVisible ? 'visible' : 'hidden'}"
+        class:fade-in={backdropShowing} class:fade-out={backdropHiding}
+        on:click={() => toggleDrawer({ detail: false })}
+    ></div>
     <div class="drawer" class:open={drawerOpen}>
         <Categories selectedCategory="{selectedCategory}" on:categorySelection />
         <Roadmap />
@@ -36,6 +61,24 @@
   .sidebar-wrapper
     width 100%
     max-width 255px
+    .backdrop
+      display none
+      position fixed
+      top 0
+      left 0
+      width 100%
+      height 100%
+      background-color alpha(brand-black, 0.5)
+      transition opacity 0.3s ease-in-out
+      z-index 2
+      &.hidden
+        display none
+      &.visible
+        display block
+      &.fade-out
+        opacity 0
+      &.fade-in
+        opacity 1
     .drawer
       display contents
   @media screen and (max-width: 991px)

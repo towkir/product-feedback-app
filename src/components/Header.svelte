@@ -48,7 +48,7 @@
     header
       position sticky
       top 75px
-      z-index 4
+      z-index 1
       border-radius 0
   @media screen and (max-width: 570px)
     header
