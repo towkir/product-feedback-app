@@ -3,11 +3,21 @@
     import Categories from "@/components/sidebar/Categories.svelte";
     import Roadmap from "@/components/sidebar/Roadmap.svelte";
     export let selectedCategory;
+
+    let drawerOpen = false;
+    function toggleDrawer(event) {
+        drawerOpen = event.detail;
+        if (drawerOpen) {
+            document.body.style.overflowY = 'hidden';
+        } else {
+            document.body.removeAttribute('style');
+        }
+    }
 </script>
 
 <div class="sidebar-wrapper">
-    <ProductBanner/>
-    <div class="drawer">
+    <ProductBanner menuOpen="{drawerOpen}" on:toggleBurgerMenu={toggleDrawer}/>
+    <div class="drawer" class:open={drawerOpen}>
         <Categories selectedCategory="{selectedCategory}" on:categorySelection />
         <Roadmap />
     </div>
@@ -34,7 +44,15 @@
       display block
       .drawer
         display block
+        width calc(100% - 110px)
+        height 100%
+        padding 24px
+        background-color brand-grey
         position fixed
-        right 100%
-        top 0
+        z-index 10
+        right -100%
+        top 75px
+        transition right 0.3s ease-in-out
+        &.open
+          right 0
 </style>
