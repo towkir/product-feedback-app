@@ -42,6 +42,7 @@
         {#each filteredStatuses as status}
             <div
                 class="column"
+                class:active={activeColumn === status.name}
                 on:click={() => setActiveColumn(status.name)}
                 style="{activeColumn === status.name ? `border-bottom-color: ${status.color}` : ''}"
             >
@@ -122,16 +123,31 @@
     .container
       width 100%
       margin 0
+      padding-top 107px
       nav
+        position fixed
+        top 0
+        left 0
+        width 100%
         border-radius 0
-        margin-bottom 8px
+        margin-bottom 0
+        box-sizing border-box
+        padding 30px 24px
+        z-index 5
       .roadmap-header
+        background-color brand-grey
+        position sticky
+        z-index 10
+        top 107px
         gap 0
         margin-bottom 0
+        border-bottom 1px solid brand-light-blue
         .column
-          padding 16px 6px
+          padding 20px 6px 16px
           text-align center
           border-bottom 4px solid transparent
+          &:not(.active)
+            opacity 0.4
           p
             display none
       .roadmap-board
