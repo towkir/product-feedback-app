@@ -50,7 +50,7 @@
         message = '';
     }
     $: remainingCharacter = message.length <= characterLimit ? characterLimit - message.length : 0;
-    $: disableButton = (message.length > characterLimit) || null
+    $: disableButton = (message.length > characterLimit) || message.length === 0
 </script>
 
 <div class="message {role}">

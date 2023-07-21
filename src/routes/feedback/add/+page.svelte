@@ -17,6 +17,8 @@
     }
     let cameFrom = '/';
 
+    $: isFormValid = feedbackFormData.title !== '' && feedbackFormData.description !== '';
+
     function setCategory(data) {
         feedbackFormData.category = data.detail;
     }
@@ -59,7 +61,7 @@
         <textarea id="detail" class="input" rows="4" bind:value={feedbackFormData.description}></textarea>
         <div class="action">
             <a href="/" class="btn navy">Cancel</a>
-            <button class="btn primary" on:click={() => addFeedback()}>Add Feedback</button>
+            <button class="btn primary" disabled="{!isFormValid}" on:click={() => addFeedback()}>Add Feedback</button>
         </div>
     </div>
 </div>

@@ -12,6 +12,8 @@
     const allStatuses = $statuses.map((item) => item.name);
     let feedbackFormData = {...data};
 
+    $: isFormValid = feedbackFormData.title !== '' && feedbackFormData.description !== '';
+
     function goBack() {
         history.back();
     }
@@ -85,7 +87,7 @@
             <button class="btn red" on:click={() => showDeleteConfirmation()}>Delete</button>
             <span class="spacer"></span>
             <a href="/" class="btn navy">Cancel</a>
-            <button class="btn primary" on:click={() => updateFeedback()}>Save Changes</button>
+            <button class="btn primary" disabled="{!isFormValid}" on:click={() => updateFeedback()}>Save Changes</button>
         </div>
     </div>
 </div>
