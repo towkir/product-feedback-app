@@ -34,7 +34,7 @@
     function deleteCommentsMadeOnThisFeedback() {
         const commentIDs = $comments.filter((item) => item.feedbackId === data.id).map((item) => item.id);
         deleteRepliesRelatedToThisFeedback(commentIDs);
-        comments.set($comments.filter((item) => !item.feedbackId === data.id));
+        comments.set($comments.filter((item) => item.feedbackId !== data.id));
     }
     function deleteFeedback() {
         deleteCommentsMadeOnThisFeedback();
