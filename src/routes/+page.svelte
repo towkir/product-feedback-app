@@ -57,7 +57,7 @@
     <Sidebar selectedCategory="{filterBy}" on:categorySelection={filterFeedbacks}/>
     <main>
         <Header
-            feedbackCount="{feedbacksFilteredAndSorted.length > 0}"
+            feedbackCount="{feedbacksFilteredAndSorted.length}"
             sortValue="{sortLabel}"
             sortOptions="{sortLabels}"
             on:sortFeedbacks={sortFeedbacks}
