@@ -44,6 +44,9 @@
       h3
         heading-3()
         min-width 150px
+      .sort-by
+        :global(.select)
+          padding: 12px 18px
   @media screen and (max-width: 690px)
     header
       position sticky
