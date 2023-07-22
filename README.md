@@ -1,38 +1,59 @@
-# create-svelte
+# Product Feedback App
+![Preview of Product Feedback App](preview.png)
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+### Description
+This feedback manager app helps you keep track of the feedbacks or bug reports of your app
+and plan accordingly to deliver the best performance on your app.
 
-## Creating a project
+#### [Live Demo](https://product-feedback-app-swart.vercel.app/)
 
-If you're seeing this, you've probably already done this step. Congrats!
+### Features
+Few of the features worth mentioning:
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+- Create, read, update, and delete product feedback requests.
+- Upvote or undo up-votes on product feedback requests.
+- Form validations when trying to create/edit feedback requests or post comments or replies.
+- Sort suggestions by most/least up-votes and most/least comments.
+- Filter suggestions by category.
+- Add comments and replies to a product feedback request.
+- Responsive and interactive elements.
+- **Beware**: changes are not stored to localstorage or sessionstorage, refreshing the page will reset app state.
 
-# create a new project in my-app
-npm create svelte@latest my-app
+#### About
+Github Repo can be found [here](https://github.com/towkir/product-feedback-app) (if you're not already viewing this from github).
+
+#### Built with
+
+- SvelteKit
+- Stylus
+
+---
+
+#### Project Setup Instructions
+
+If you've cloned the repository, install the dependencies with
 ```
+npm install
+```
+or `pnpm install` or `yarn`.
 
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+start a development server:
 
 ```bash
 npm run dev
-
 # or start the server and open the app in a new browser tab
 npm run dev -- --open
 ```
-
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
+Compile and hot-reload for development
+```
+npm run serve
 ```
 
-You can preview the production build with `npm run preview`.
+Compile and minify for production
+```
+npm run build
+```
+Find out more about build config or the ecosystem at [SvelteKit](https://kit.svelte.dev/docs/introduction)
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+
+*Feel free to contribute, fix bugs, or provide feedback*
