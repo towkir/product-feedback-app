@@ -45,10 +45,11 @@
     $: feedbacksFilteredAndSorted = feedbacksFiltered
         .sort((a, b) => sortIn === 'ascending' ? a[sortBy] - b[sortBy] : b[sortBy] - a[sortBy]);
     onMount(() => { // needed for sorting with comments
-        for (let i = 0; i < $feedbacks.length; i += 1) {
-            $feedbacks[i].commentCount = $comments.filter((item) => item.feedbackId === $feedbacks[i].id).length;
+        const suggestions = $feedbacks.filter((item) => item.status === 'Suggestion');
+        for (let i = 0; i < suggestions.length; i += 1) {
+            suggestions[i].commentCount = $comments.filter((item) => item.feedbackId === $feedbacks[i].id).length;
         }
-        feedbacksWithCommentCount = $feedbacks;
+        feedbacksWithCommentCount = suggestions;
         dataLoaded = true;
     })
 </script>
