@@ -39,7 +39,7 @@
       padding-left 10px
       display flex
       align-items center
-      :global(#icon-light-bulb)
+      :global(.icon-light-bulb)
         margin-right 16px
       h3
         heading-3()
@@ -58,7 +58,7 @@
       padding 14px 24px
       .feedback-info
         padding-left 0
-        :global(#icon-light-bulb),
+        :global(.icon-light-bulb),
         h3
           display none
         .sort-by

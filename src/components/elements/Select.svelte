@@ -49,13 +49,13 @@
       font-weight 400
       span
         heading-4()
-      :global(#icon-arrow-hr)
+      :global(.icon-arrow-vr)
         margin-left 10px
         transition transform 0.3s ease-in-out
         transform rotate(180deg)
     &.open
       .label
-        :global(#icon-arrow-hr)
+        :global(.icon-arrow-vr)
           transform rotate(0deg)
     .options
       position absolute
@@ -97,11 +97,11 @@
           body-2()
           font-weight 400
           color brand-light-navy
-          :global(#icon-arrow-hr)
+          :global(.icon-arrow-vr)
             position absolute
             top calc(50% - 3.5px)
             right 13px
-          :global(#icon-arrow-hr path)
+          :global(.icon-arrow-vr path)
             stroke brand-blue
       .options
         top calc(100% + 16px)
