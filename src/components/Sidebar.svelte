@@ -44,7 +44,7 @@
     })
 </script>
 
-<div class="sidebar-wrapper">
+<div class="sidebar-wrapper" role="navigation">
     <ProductBanner menuOpen="{drawerOpen}" on:toggleBurgerMenu={toggleDrawer}/>
     <div
         class="backdrop {backdropVisible ? 'visible' : 'hidden'}"
