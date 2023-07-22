@@ -56,7 +56,7 @@
         window.dispatchEvent(hideModal);
     }
 </script>
-<div class="feedback-form-wrapper">
+<div class="feedback-form-wrapper" role="main">
     <NavHeader />
     <div class="feedback-form">
         <span class="decoration"><IconDecorationEdit /></span>

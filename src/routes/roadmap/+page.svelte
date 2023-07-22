@@ -18,7 +18,7 @@
     }
 </script>
 
-<div class="container">
+<div class="container" role="main">
     <nav>
         <div class="left">
             <a class="btn link" href="/"><IconArrowHr />Go Back</a>

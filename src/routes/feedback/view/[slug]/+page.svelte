@@ -8,7 +8,7 @@
     $: commentsInCurrentFeedback = $comments.filter((item) => item.feedbackId === data.id);
 </script>
 
-<div class="container">
+<div class="container" role="main">
     <NavHeader showEditButton="{true}"/>
     <FeedbackCard feedback="{data}" clickable="{false}" />
     <CommentsWrapper comments="{commentsInCurrentFeedback}"/>

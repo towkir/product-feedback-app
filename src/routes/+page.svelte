@@ -54,7 +54,7 @@
     })
 </script>
 
-<div class="container">
+<div class="container" role="main">
     <Sidebar selectedCategory="{filterBy}" on:categorySelection={filterFeedbacks}/>
     <main>
         <Header
