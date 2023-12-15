@@ -1,5 +1,5 @@
 # Product Feedback App
-![Preview of Product Feedback App](preview.png)
+![Preview of Product Feedback App](preview.jpg)
 
 ### Description
 This feedback manager app helps you keep track of the feedbacks or bug reports of your app
@@ -31,7 +31,7 @@ Github Repo can be found [here](https://github.com/towkir/product-feedback-app) 
 
 #### Project Setup Instructions
 
-If you've cloned the repository, install the dependencies with
+If you've cloned the repository, install the dependencies with:
 ```
 npm install
 ```
@@ -39,17 +39,19 @@ or `pnpm install` or `yarn`.
 
 start a development server:
 
-```bash
+```
 npm run dev
-# or start the server and open the app in a new browser tab
+```
+or start the server and open the app in a new browser tab:
+```
 npm run dev -- --open
 ```
-Compile and hot-reload for development
+Compile and hot-reload for development:
 ```
 npm run serve
 ```
 
-Compile and minify for production
+Compile and minify for production:
 ```
 npm run build
 ```
